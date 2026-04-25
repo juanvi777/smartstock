@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Perfil</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="verificarSesion()">
+
+<header class="navbar">
+<h2 id="nombreTienda"></h2>
+<button onclick="cerrarSesion()">Cerrar sesión</button>
+</header>
+
+<main class="contenido">
+
+<h2>Configuración ⚙</h2>
+
+<input type="text" id="nuevoNombre" placeholder="Nuevo nombre">
+<button onclick="cambiarNombre()">Guardar nombre</button>
+
+</main>
+
+<script src="js/global.js"></script>
+<script src="js/perfil.js"></script>
+</body>
+</html>

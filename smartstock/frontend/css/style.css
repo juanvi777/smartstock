@@ -1,0 +1,215 @@
+body {
+margin: 0;
+font-family: Arial;
+background: #fff4b8;
+}
+
+.navbar {
+display: grid;
+grid-template-columns: auto 1fr auto;
+background: red;
+color: white;
+padding: 10px;
+align-items: center;
+}
+
+.logo-nav {
+width: 40px;
+cursor: pointer;
+}
+
+.titulo {
+text-align: center;
+}
+
+.login-container {
+text-align: center;
+margin-top: 40px;
+}
+
+.logo-circle {
+border-radius: 50%;
+border: 4px solid gold;
+padding: 10px;
+display: inline-block;
+}
+
+.logo-circle img {
+width: 60px;
+}
+
+.form input {
+display: block;
+margin: 10px auto;
+padding: 10px;
+width: 250px;
+}
+
+.form button {
+padding: 10px;
+background: red;
+color: white;
+border: none;
+}
+
+.acciones {
+display: flex;
+justify-content: space-between;
+width: 250px;
+margin: auto;
+}
+
+.acciones button {
+width: 48%;
+}
+
+.menu {
+background: #ffe0e0;
+padding: 10px;
+}
+
+.menu button {
+width: 100%;
+margin: 5px 0;
+}
+
+.oculto {
+display: none;
+}
+
+.contenido {
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
+
+.card {
+background: white;
+padding: 20px;
+border-radius: 15px;
+width: 90%;
+max-width: 500px;
+}
+/* BOTONES GENERALES */
+button {
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* SEPARACIÓN */
+.form button,
+.acciones {
+    margin-top: 15px;
+}
+
+/* BOTÓN VOLVER */
+.btn-volver {
+    margin: 10px;
+    background: gray;
+    color: white;
+    border: none;
+}
+
+/* TABLA VENTA */
+.tabla-venta {
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+
+.tabla-venta th, .tabla-venta td {
+border-bottom: 1px solid #ccc;
+padding: 8px;
+text-align: center;
+}
+
+/* TOTAL */
+#totalVenta {
+text-align: right;
+color: red;
+}
+
+/* INPUTS */
+.agregar-producto {
+display: flex;
+gap: 10px;
+margin-top: 10px;
+}
+
+.agregar-producto input {
+flex: 1;
+padding: 10px;
+}
+
+/* BOTON FINAL */
+.btn-finalizar {
+margin-top: 10px;
+width: 100%;
+background: green;
+color: white;
+padding: 12px;
+border-radius: 10px;
+}
+
+/* LOGO EN NAVBAR (BONITO) */
+.logo-navbar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid gold;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-navbar img {
+    width: 24px;
+}
+
+/* AJUSTE BOTON MENU */
+.btn-menu-mini {
+    margin-left: 5px;
+}
+
+/* MENU COMO VENTANA EMERGENTE */
+.menu {
+    position: absolute;
+    top: 60px;
+    right: 10px; /* aparece a la derecha */
+    width: 200px;
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+/* BOTONES DENTRO DEL MENU */
+.menu button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* HOVER BONITO */
+.menu button:hover {
+    background: #d64949;
+}
+
+.btn-logout {
+    background: #ec0f0f;
+    color: rgb(207, 114, 114);
+    font-weight: bold;
+}
+
+.btn-logout:hover {
+    background: #cc0000;
+}

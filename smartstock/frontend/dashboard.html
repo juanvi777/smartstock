@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.btn-menu-mini {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    padding: 0;
+    border-radius: 8px;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-contenido {
+    background: white;
+    margin: 5% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 15px;
+}
+
+/* IA */
+#robot {
+    text-align: center;
+    font-size: 50px;
+    animation: flotar 2s infinite;
+}
+
+@keyframes flotar {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+.mensaje {
+    padding: 10px;
+    border-radius: 12px;
+    margin: 5px 0;
+}
+
+.usuario { background: #dbeaff; }
+.ia { background: #d1ffe0; }
+
+/* EFECTO ESCRIBIENDO */
+.escribiendo::after {
+    content: "...";
+    animation: puntos 1s infinite;
+}
+
+@keyframes puntos {
+    0% {content:".";}
+    50% {content:"..";}
+    100% {content:"...";}
+}
+</style>
+</head>
+
+<body>
+
+    <header class="navbar">
+    <div></div> <!-- espacio vacío izquierda -->
+    
+    <h2 id="nombreTienda" class="titulo"></h2>
+    
+    <button onclick="toggleMenu()" class="btn-menu-mini">☰</button>
+</header>
+
+<!-- MENU (AQUÍ SE AGREGA PERFIL) -->
+<div id="menu" class="menu oculto">
+    <button onclick="mostrarSeccion('ventas')">Ventas</button>
+    <button onclick="mostrarSeccion('inventario')">Inventario</button>
+    <button onclick="mostrarSeccion('ia')">Smart IA</button>
+    <button onclick="mostrarSeccion('perfil')">Perfil</button>
+    <button onclick="cerrarSesion()" class="btn-logout">Cerrar sesión</button>
+
+</div>
+<main class="contenido">
+
+<!-- VENTAS -->
+<section id="ventas" class="card">
+<h2>Venta 🧾</h2>
+
+<table class="tabla-venta">
+<thead>
+<tr><th>Producto</th><th>Cantidad</th><th>Valor</th><th></th></tr>
+</thead>
+<tbody id="listaVenta"></tbody>
+</table>
+
+<h3 id="totalVenta">Total: $0</h3>
+
+<div class="agregar-producto">
+<input type="text" id="buscarProducto" placeholder="Código o nombre">
+<input type="number" id="cantidadVenta" placeholder="Cantidad">
+<button onclick="agregarAventa()">Agregar</button>
+</div>
+
+<button class="btn-finalizar" onclick="finalizarVenta()">Finalizar venta</button>
+</section>
+
+<!-- INVENTARIO -->
+<section id="inventario" class="card oculto">
+<h2>Inventario</h2>
+
+<button onclick="mostrarFormulario()">➕ Agregar producto</button>
+
+<div id="formProducto" class="oculto">
+<input id="idProd" placeholder="ID">
+<input id="codigo" placeholder="Código">
+<input id="nombre" placeholder="Nombre">
+<input id="costo" type="number" placeholder="Costo">
+<input id="valor" type="number" placeholder="Precio">
+<button onclick="agregarProducto()">Guardar</button>
+</div>
+
+<table border="1" width="100%">
+<tr><th>ID</th><th>Código</th><th>Nombre</th><th>Precio</th><th>Stock</th></tr>
+<tbody id="tablaProductos"></tbody>
+</table>
+</section>
+
+<!-- IA -->
+<section id="ia" class="card oculto">
+<h2>Smart IA 🤖</h2>
+
+<div id="robot">🤖</div>
+
+<div id="chatBox" style="height:220px; overflow-y:auto;"></div>
+
+<input id="pregunta" placeholder="Pregúntame algo...">
+<button onclick="responder()">Enviar</button>
+</section>
+
+<!-- PERFIL (NUEVO) -->
+<section id="perfil" class="card oculto">
+<h2>Perfil 👤</h2>
+
+<p>Información del usuario</p>
+
+<input type="text" placeholder="Nombre">
+<input type="email" placeholder="Correo">
+<input type="password" placeholder="Nueva contraseña">
+
+<button class="btn-finalizar">Guardar cambios</button>
+</section>
+
+</main>
+
+<!-- MODAL FACTURA -->
+<div id="modalFactura" class="modal">
+<div class="modal-contenido">
+<span onclick="cerrarModal()">❌</span>
+<h2>🧾 Factura</h2>
+<p id="fechaFactura"></p>
+<table class="tabla-venta">
+<thead><tr><th>Producto</th><th>Cant</th><th>Total</th></tr></thead>
+<tbody id="detalleFactura"></tbody>
+</table>
+<h3 id="totalFactura"></h3>
+<button onclick="cerrarModal()" class="btn-finalizar">Cerrar</button>
+</div>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

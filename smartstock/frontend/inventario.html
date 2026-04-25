@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Inventario</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="verificarSesion()">
+
+<header class="navbar">
+<h2 id="nombreTienda"></h2>
+<button onclick="cerrarSesion()">Cerrar sesión</button>
+</header>
+
+<main class="contenido">
+
+<h2>Inventario 📦</h2>
+
+<button onclick="mostrarFormulario()">➕ Agregar producto</button>
+
+<div id="formProducto" class="form oculto">
+<input type="text" id="idProd" placeholder="ID">
+<input type="text" id="codigo" placeholder="Código">
+<input type="text" id="nombre" placeholder="Nombre">
+<input type="number" id="costo" placeholder="Costo">
+<input type="number" id="valor" placeholder="Precio">
+<button onclick="agregarProducto()">Guardar</button>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Código</th>
+<th>Nombre</th>
+<th>Precio</th>
+<th>Stock</th>
+</tr>
+</thead>
+<tbody id="tablaProductos"></tbody>
+</table>
+
+</main>
+
+<script src="js/global.js"></script>
+<script src="js/inventario.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>IA</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="navbar">
+<img src="img/logo.png" class="logo-nav">
+<h2 id="nombreTienda"></h2>
+<button onclick="toggleMenu()">☰</button>
+</header>
+
+<div id="menu" class="menu oculto">
+<a href="dashboard.html">Ventas</a>
+<a href="inventario.html">Inventario</a>
+<a href="ia.html">IA</a>
+<a href="perfil.html">Perfil</a>
+</div>
+
+<main class="contenido">
+
+<h2>Smart IA 🤖</h2>
+
+<div id="chatBox"></div>
+
+<input type="text" id="pregunta" placeholder="Pregunta...">
+<button onclick="responder()">Enviar</button>
+
+</main>
+
+<script src="js/global.js"></script>
+<script src="js/ia.js"></script>
+</body>
+</html>

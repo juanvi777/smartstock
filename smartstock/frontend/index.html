@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>SmartStock</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* ===== GENERAL ===== */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    transition: 0.4s;
+}
+
+/* ===== DARK MODE ===== */
+.btn-dark {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dark-mode {
+    background: #121212;
+    color: white;
+}
+
+.dark-mode .panel,
+.dark-mode .panel-empresa {
+    background: #1e1e1e;
+}
+
+.dark-mode input {
+    background: #2a2a2a;
+    color: white;
+}
+
+/* ===== ANUNCIOS ===== */
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    background: black;
+    color: white;
+    padding: 8px;
+    font-weight: bold;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: mover 12s linear infinite;
+}
+
+@keyframes mover {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* ===== BOTÓN EMPRESA ===== */
+.btn-menu {
+    display: block;
+    margin: 20px auto;
+    background: red;
+    color: white;
+    border-radius: 25px;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-menu:hover {
+    transform: scale(1.1);
+}
+
+/* ===== PANEL EMPRESA ===== */
+.panel-empresa {
+    width: 90%;
+    max-width: 550px;
+    margin: auto;
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    display: none;
+    animation: aparecer 0.4s ease;
+}
+
+.panel-empresa h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.panel-empresa p {
+    margin: 10px 0;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.panel-empresa ul {
+    padding-left: 15px;
+}
+
+.panel-empresa li {
+    margin-bottom: 8px;
+}
+
+@keyframes aparecer {
+    from {opacity:0; transform: translateY(-10px);}
+    to {opacity:1; transform: translateY(0);}
+}
+
+/* ===== LOGIN ===== */
+.panel {
+    background: rgba(255,255,255,0.6);
+    border-radius: 20px;
+    padding: 25px;
+    width: 280px;
+    margin: auto;
+}
+
+/* ===== INPUT ===== */
+.input-pro {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* ===== BOTONES ===== */
+.btn-pro {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: none;
+    background: red;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-pro:hover {
+    transform: scale(1.05);
+}
+
+.btn-pro:active {
+    transform: scale(0.95);
+}
+
+/* ===== IMÁGENES ===== */
+.img-redonda {
+    border-radius: 50%;
+}
+
+.img-animada {
+    animation: latido 2s infinite ease-in-out;
+}
+
+@keyframes latido {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* ===== TITULO ===== */
+.titulo-pro {
+    font-size: 36px;
+    font-weight: 900;
+    text-align: center;
+    background: linear-gradient(90deg, red, orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    margin-top: 40px;
+    padding: 25px;
+    text-align: center;
+    background: black;
+    color: white;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.footer span {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ===== REDES ===== */
+.redes {
+    margin-top: 10px;
+}
+
+.redes span {
+    margin: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.redes span:hover {
+    transform: scale(1.3);
+}
+
+</style>
+</head>
+
+<body>
+
+<button class="btn-dark" onclick="toggleDarkMode()">🌙</button>
+
+<header class="navbar">
+    <img src="img/logo.png" class="logo-nav img-redonda img-hover">
+    <h2 class="titulo">SmartStock</h2>
+</header>
+
+<div class="marquee">
+<span>🚀 Control total | 📦 Inventario | 💰 Ventas inteligentes</span>
+</div>
+
+<div class="marquee" style="background:#111; color:#00ffcc;">
+<span>🔥 Plataforma moderna | ⚡ Rápido | 🤖 Inteligente</span>
+</div>
+
+<button class="btn-menu" onclick="toggleEmpresa()">✨ ¿Por qué elegirnos?</button>
+
+<div id="empresa" class="panel-empresa">
+
+<h3>🏢 ¿Por qué elegir SmartStock?</h3>
+
+<p>
+SmartStock no es solo una herramienta, es una solución completa pensada para negocios modernos.
+Nuestro sistema te permite llevar el control de tu tienda de forma fácil, rápida y sin errores.
+</p>
+
+<p>
+Sabemos que manejar inventario y ventas puede ser complicado, por eso diseñamos una plataforma
+inteligente que te ayuda a tomar mejores decisiones y a crecer sin estrés.
+</p>
+
+<ul>
+<li>✔ Gestión completa de ventas en tiempo real</li>
+<li>✔ Control inteligente de inventario</li>
+<li>✔ Interfaz fácil de usar para cualquier persona</li>
+<li>✔ Información clara para mejorar tu negocio</li>
+<li>✔ Sistema rápido, seguro y confiable</li>
+</ul>
+
+<p>
+Con SmartStock tienes el poder de administrar tu negocio como un profesional,
+sin necesidad de conocimientos técnicos.
+</p>
+
+</div>
+
+<div class="login-container">
+
+<div class="logo-circle img-animada">
+<img src="img/logo.png" class="img-redonda">
+</div>
+
+<h2 class="titulo-pro">Bienvenido 👋</h2>
+
+<div class="panel">
+
+<input type="text" id="usuario" placeholder="Usuario" class="input-pro">
+<input type="password" id="password" placeholder="Contraseña" class="input-pro">
+
+<button onclick="login()" class="btn-pro">Ingresar</button>
+<button onclick="irCrear()" class="btn-pro">🏪 Crear tienda</button>
+<button onclick="irRecuperar()" class="btn-pro">🔑 Recuperar cuenta</button>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 <span>SmartStock</span> — Todos los derechos reservados <br>
+Plataforma inteligente para gestión de negocios 🚀 <br>
+
+<div class="redes">
+<span>📘 Facebook</span>
+<span>📸 Instagram</span>
+<span>🐦 Twitter</span>
+<span>💬 WhatsApp</span>
+</div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+<script>
+function toggleEmpresa(){
+    let p = document.getElementById("empresa");
+    p.style.display = p.style.display === "block" ? "none" : "block";
+}
+
+function toggleDarkMode(){
+    document.body.classList.toggle("dark-mode");
+}
+
+window.onload = function(){
+    document.getElementById("usuario").value = "";
+    document.getElementById("password").value = "";
+}
+</script>
+
+</body>
+</html>

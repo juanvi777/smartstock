@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Recuperar contraseña</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* PANEL BONITO */
+.recuperar-panel {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    width: 280px;
+    margin: 50px auto;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* INPUT */
+.recuperar-panel input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* BOTÓN */
+.recuperar-panel button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: red;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.recuperar-panel button:hover {
+    transform: scale(1.05);
+}
+
+/* RESULTADO */
+#resultado {
+    margin-top: 15px;
+    font-weight: bold;
+    animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+</style>
+</head>
+
+<body>
+
+<button class="btn-volver" onclick="volver()">⬅ Volver</button>
+
+<div class="recuperar-panel">
+
+<h2>🔑 Recuperar contraseña</h2>
+
+<input type="text" id="userRec" placeholder="Usuario">
+
+<button onclick="recuperar()">Buscar contraseña</button>
+
+<p id="resultado"></p>
+
+</div>
+
+<script src="js/recuperar.js"></script>
+
+</body>
+</html>
