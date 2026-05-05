@@ -1,10 +1,22 @@
 let productos = JSON.parse(localStorage.getItem("productos")) || [];
 let ventas = JSON.parse(localStorage.getItem("ventas")) || [];
 
-nombreTienda.textContent = localStorage.getItem("usuarioActivo") || "Mi tienda";
+// 🔥 SESIÓN
+let usuario = localStorage.getItem("usuarioActivo");
+let nombre = document.getElementById("nombreTienda");
+
+if(!usuario){
+    window.location.href = "index.html";
+} else {
+    if(nombre){
+        nombre.textContent = usuario;
+    }
+}
 
 // MENU
-function toggleMenu(){ menu.classList.toggle("oculto"); }
+function toggleMenu(){
+    document.getElementById("menu").classList.toggle("oculto");
+}
 
 function mostrarSeccion(id){
     document.querySelectorAll(".card").forEach(c=>c.classList.add("oculto"));
@@ -12,27 +24,38 @@ function mostrarSeccion(id){
 }
 
 // INVENTARIO
-function mostrarFormulario(){ formProducto.classList.toggle("oculto"); }
+function mostrarFormulario(){
+    document.getElementById("formProducto").classList.toggle("oculto");
+}
 
 function agregarProducto(){
     let p = {
-        id: idProd.value,
-        codigo: codigo.value,
-        nombre: nombre.value,
-        costo: parseFloat(costo.value),
-        valor: parseFloat(valor.value),
+        id: document.getElementById("idProd").value,
+        codigo: document.getElementById("codigo").value,
+        nombre: document.getElementById("nombre").value,
+        costo: parseFloat(document.getElementById("costo").value) || 0,
+        valor: parseFloat(document.getElementById("valor").value),
         stock: 10
     };
+
     productos.push(p);
     guardar();
     mostrarTabla();
 }
 
 function mostrarTabla(){
-    tablaProductos.innerHTML="";
+    let tabla = document.getElementById("tablaProductos");
+    tabla.innerHTML="";
+
     productos.forEach(p=>{
-        tablaProductos.innerHTML += `
-        <tr><td>${p.id}</td><td>${p.codigo}</td><td>${p.nombre}</td><td>$${p.valor}</td><td>${p.stock}</td></tr>`;
+        tabla.innerHTML += `
+        <tr>
+        <td>${p.id}</td>
+        <td>${p.codigo}</td>
+        <td>${p.nombre}</td>
+        <td>$${p.valor}</td>
+        <td>${p.stock}</td>
+        </tr>`;
     });
 }
 
@@ -40,8 +63,8 @@ function mostrarTabla(){
 let carrito=[];
 
 function agregarAventa(){
-    let texto = buscarProducto.value;
-    let cantidad = parseInt(cantidadVenta.value);
+    let texto = document.getElementById("buscarProducto").value;
+    let cantidad = parseInt(document.getElementById("cantidadVenta").value);
 
     let producto = productos.find(p =>
         p.codigo === texto || p.nombre.toLowerCase().includes(texto.toLowerCase())
@@ -52,17 +75,26 @@ function agregarAventa(){
         return;
     }
 
-    carrito.push({nombre:producto.nombre, valor:producto.valor, cantidad, id:producto.id});
+    carrito.push({
+        nombre: producto.nombre,
+        valor: producto.valor,
+        cantidad,
+        id: producto.id
+    });
+
     mostrarVenta();
 }
 
 function mostrarVenta(){
-    listaVenta.innerHTML="";
+    let lista = document.getElementById("listaVenta");
+    let totalTexto = document.getElementById("totalVenta");
+
+    lista.innerHTML="";
     let total=0;
 
     carrito.forEach((p,i)=>{
         total+=p.valor*p.cantidad;
-        listaVenta.innerHTML+=`
+        lista.innerHTML+=`
         <tr>
         <td>${p.nombre}</td>
         <td>${p.cantidad}</td>
@@ -71,7 +103,7 @@ function mostrarVenta(){
         </tr>`;
     });
 
-    totalVenta.textContent="Total: $"+total;
+    totalTexto.textContent="Total: $"+total;
 }
 
 function eliminarItem(i){
@@ -80,12 +112,15 @@ function eliminarItem(i){
 }
 
 // MODAL
-function abrirModal(){ modalFactura.style.display="block"; }
-function cerrarModal(){ modalFactura.style.display="none"; }
+function abrirModal(){ document.getElementById("modalFactura").style.display="block"; }
+function cerrarModal(){ document.getElementById("modalFactura").style.display="none"; }
 
-// FACTURA
+// FINALIZAR VENTA
 function finalizarVenta(){
-    if(carrito.length===0){ alert("No hay productos"); return; }
+    if(carrito.length===0){
+        alert("No hay productos");
+        return;
+    }
 
     let total=0;
     let detalle="";
@@ -103,89 +138,29 @@ function finalizarVenta(){
 
     guardar();
 
-    detalleFactura.innerHTML=detalle;
-    totalFactura.textContent="Total: $"+total;
-    fechaFactura.textContent=new Date().toLocaleString();
+    document.getElementById("detalleFactura").innerHTML=detalle;
+    document.getElementById("totalFactura").textContent="Total: $"+total;
+    document.getElementById("fechaFactura").textContent=new Date().toLocaleString();
 
     abrirModal();
     carrito=[];
     mostrarVenta();
 }
 
-// IA VOZ
-function hablar(texto){
-    let voz = new SpeechSynthesisUtterance(texto);
-    voz.lang = "es-ES";
-    speechSynthesis.speak(voz);
-}
-
-// IA PRO
+// IA SIMPLE
 function responder(){
-    let texto = pregunta.value.toLowerCase();
-    if(texto==="") return;
+    let texto = document.getElementById("pregunta").value.toLowerCase();
+    let chat = document.getElementById("chatBox");
 
-    chatBox.innerHTML+=`<div class="mensaje usuario"><b>Tú:</b> ${texto}</div>`;
+    chat.innerHTML+=`<div><b>Tú:</b> ${texto}</div>`;
 
-    robot.style.transform="scale(1.3)";
-    setTimeout(()=>robot.style.transform="scale(1)",300);
+    let respuesta="No entendí";
 
-    let escribiendo = document.createElement("div");
-    escribiendo.className="mensaje ia escribiendo";
-    escribiendo.innerHTML="<b>IA:</b> escribiendo";
-    chatBox.appendChild(escribiendo);
-
-    let respuesta="No entendí 🤔";
-
-    // RESPUESTAS
-    if(texto.includes("hola")){
-        respuesta="Hola 😎 soy tu asistente inteligente";
-    }
-    else if(texto.includes("quien eres")){
-        respuesta="Soy la Smart IA de tu tienda";
-    }
-    else if(texto.includes("ganancia")){
-        let total=0;
-        ventas.forEach(v=>{
-            let p=productos.find(x=>x.id===v.id);
-            if(p) total+=(p.valor-p.costo)*v.cantidad;
-        });
-        respuesta="Tu ganancia es $"+total;
-    }
-    else if(texto.includes("ventas hoy")){
-        let hoy = new Date().toLocaleDateString();
-        let total = ventas.filter(v=>v.fecha===hoy).length;
-        respuesta="Hoy llevas "+total+" ventas";
-    }
-    else if(texto.includes("ventas")){
+    if(texto.includes("ventas")){
         respuesta="Total ventas: "+ventas.length;
     }
-    else if(texto.includes("productos")){
-        respuesta="Tienes "+productos.length+" productos";
-    }
-    else if(texto.includes("stock")){
-        let bajos=productos.filter(p=>p.stock<5);
-        respuesta=bajos.length===0 ? "Todo bien 👍" : "Compra: "+bajos.map(p=>p.nombre).join(", ");
-    }
-    else if(texto.includes("producto mas vendido")){
-        let conteo = {};
-        ventas.forEach(v=>{
-            conteo[v.nombre]=(conteo[v.nombre]||0)+v.cantidad;
-        });
-        let max = Object.keys(conteo).reduce((a,b)=> conteo[a]>conteo[b]?a:b, "");
-        respuesta = max ? "El más vendido es "+max : "No hay datos";
-    }
-    else if(texto.includes("resumen")){
-        respuesta = "Ventas: "+ventas.length+" | Productos: "+productos.length;
-    }
 
-    setTimeout(()=>{
-        escribiendo.remove();
-        chatBox.innerHTML+=`<div class="mensaje ia"><b>IA:</b> ${respuesta}</div>`;
-        hablar(respuesta);
-        chatBox.scrollTop=chatBox.scrollHeight;
-    },1000);
-
-    pregunta.value="";
+    chat.innerHTML+=`<div><b>IA:</b> ${respuesta}</div>`;
 }
 
 // GUARDAR
@@ -195,11 +170,3 @@ function guardar(){
 }
 
 mostrarTabla();
-
-function cerrarSesion() {
-    // Limpia datos si usas localStorage (opcional)
-    localStorage.clear();
-
-    // Redirige al inicio (login)
-    window.location.href = "index.html";
-}

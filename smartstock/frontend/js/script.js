@@ -1,10 +1,8 @@
 function irCrear(){
-    limpiarInputs();
     window.location.href = "crear.html";
 }
 
 function irRecuperar(){
-    limpiarInputs();
     window.location.href = "recuperar.html";
 }
 
@@ -27,9 +25,6 @@ function login(){
 
     if(existe){
         localStorage.setItem("usuarioActivo", user);
-
-        limpiarInputs();
-
         window.location.href = "dashboard.html";
     } else {
         alert("Usuario o contraseña incorrectos");
@@ -37,17 +32,10 @@ function login(){
     }
 }
 
-/* 🔥 LIMPIAR TODO */
-function limpiarInputs(){
+window.onload = function(){
     let user = document.getElementById("usuario");
     let pass = document.getElementById("password");
 
     if(user) user.value = "";
     if(pass) pass.value = "";
-}
-
-/* 🔥 AL RECARGAR */
-window.onload = limpiarInputs;
-
-/* 🔥 AL SALIR DE LA PÁGINA */
-window.onbeforeunload = limpiarInputs;
+};
