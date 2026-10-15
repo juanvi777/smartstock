@@ -32,3 +32,7 @@ function crearCuenta(){
 function volver(){
     window.location.href = "index.html";
 }
+
+let tipo = document.getElementById("tipoNegocio").value;
+
+localStorage.setItem("tipoNegocio", tipo);

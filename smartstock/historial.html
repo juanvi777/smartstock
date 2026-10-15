@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Historial SmartStock</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* =========================
+BODY
+========================= */
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f3f4f6;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+    background:#111827;
+    color:white;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo-tienda{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.btn-menu{
+    background:red;
+    border:none;
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* =========================
+CONTENEDOR
+========================= */
+
+.container{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    padding:20px;
+}
+
+/* =========================
+CARDS HISTORIAL
+========================= */
+
+.card-historial{
+
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+.top-historial{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+
+}
+
+.total-historial{
+
+    font-size:28px;
+    font-weight:bold;
+    color:green;
+
+}
+
+/* =========================
+TABLA
+========================= */
+
+.tabla-venta{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.tabla-venta th{
+    background:#111827;
+    color:white;
+}
+
+.tabla-venta th,
+.tabla-venta td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+/* =========================
+BOTON ANALISIS
+========================= */
+
+.contenedor-analisis{
+
+    text-align:center;
+    margin-top:30px;
+
+}
+
+.btn-analisis{
+
+    background:#111827;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:12px;
+    font-size:17px;
+    cursor:pointer;
+
+}
+
+/* =========================
+MODAL ANALISIS
+========================= */
+
+.modal{
+
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+
+}
+
+.modal-analisis{
+
+    background:white;
+    width:95%;
+    max-width:1200px;
+    padding:30px;
+    border-radius:20px;
+    max-height:90vh;
+    overflow:auto;
+
+}
+
+.cerrar-modal{
+
+    float:right;
+    cursor:pointer;
+    font-size:25px;
+
+}
+
+/* =========================
+FILTROS
+========================= */
+
+.filtros-analisis{
+
+    display:flex;
+    gap:10px;
+    margin:25px 0;
+    flex-wrap:wrap;
+
+}
+
+.filtros-analisis button{
+
+    background:red;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+
+}
+
+/* =========================
+GRID ANALISIS
+========================= */
+
+.analisis-grid{
+
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+
+}
+
+.card-analisis{
+
+    background:#f9fafb;
+    padding:25px;
+    border-radius:15px;
+
+}
+
+.card-analisis h1{
+
+    font-size:35px;
+    margin-top:10px;
+
+}
+
+.ia-card{
+
+    background:#dbeafe;
+
+}
+
+.pedido-card{
+
+    background:#dcfce7;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+
+    <div class="logo-tienda" id="nombreTienda">
+        SMART STOCK
+    </div>
+
+    <button class="btn-menu"
+    onclick="window.location.href='dashboard.html'">
+
+        ⬅ Volver
+
+    </button>
+
+</header>
+
+<!-- CONTENIDO -->
+<div class="container">
+
+    <h1>
+        📑 Historial de ventas
+    </h1>
+
+    <div id="historialVentas">
+
+    </div>
+
+</div>
+
+<!-- MODAL ANALISIS -->
+<div id="modalAnalisis" class="modal">
+
+    <div class="modal-analisis">
+
+        <span 
+        class="cerrar-modal"
+        onclick="cerrarAnalisis()">
+
+            ✖
+
+        </span>
+
+        <h1>
+            📊 Análisis inteligente de ventas
+        </h1>
+
+        <div class="filtros-analisis">
+
+            <button onclick="generarAnalisis('dia')">
+                Día
+            </button>
+
+            <button onclick="generarAnalisis('semana')">
+                Semana
+            </button>
+
+            <button onclick="generarAnalisis('mes')">
+                Mes
+            </button>
+
+            <button onclick="generarAnalisis('año')">
+                Año
+            </button>
+
+        </div>
+
+        <div id="resultadoAnalisis">
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/historial.js"></script>
+
+</body>
+</html>

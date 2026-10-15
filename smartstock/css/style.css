@@ -1,215 +1,763 @@
-body {
-margin: 0;
-font-family: Arial;
-background: #fff4b8;
+body{
+    margin:0;
+    font-family:Segoe UI, Arial, sans-serif;
+    background:#f4f6f9;
 }
 
-.navbar {
-display: grid;
-grid-template-columns: auto 1fr auto;
-background: red;
-color: white;
-padding: 10px;
-align-items: center;
+/* =========================
+INDEX / LOGIN
+========================= */
+
+.login-container{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    box-sizing:border-box;
 }
 
-.logo-nav {
-width: 40px;
-cursor: pointer;
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    text-align:center;
 }
 
-.titulo {
-text-align: center;
+/* LOGO PEQUEÑO */
+.logo-circle{
+    width:120px;
+    height:120px;
+    margin:auto;
+    border-radius:50%;
+    background:white;
+    border:5px solid gold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
 }
 
-.login-container {
-text-align: center;
-margin-top: 40px;
+/* ESTA ES LA PARTE QUE LO ARREGLA */
+.logo-circle img{
+    width:75%;
+    height:75%;
+    object-fit:contain;
 }
 
-.logo-circle {
-border-radius: 50%;
-border: 4px solid gold;
-padding: 10px;
-display: inline-block;
+/* TITULOS LOGIN */
+.login-box h1{
+    margin-top:20px;
+    font-size:32px;
+    color:#d10000;
 }
 
-.logo-circle img {
-width: 60px;
+.login-box p{
+    color:gray;
+    margin-bottom:25px;
 }
 
-.form input {
-display: block;
-margin: 10px auto;
-padding: 10px;
-width: 250px;
+/* FORM LOGIN */
+.form{
+    width:100%;
 }
 
-.form button {
-padding: 10px;
-background: red;
-color: white;
-border: none;
+.form input{
+    width:100%;
+    padding:15px;
+    margin-top:12px;
+    border-radius:12px;
+    border:1px solid #ccc;
+    font-size:15px;
+    box-sizing:border-box;
 }
 
-.acciones {
-display: flex;
-justify-content: space-between;
-width: 250px;
-margin: auto;
+.form button{
+    width:100%;
+    margin-top:20px;
+    background:#d10000;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
 }
 
-.acciones button {
-width: 48%;
+.form button:hover{
+    background:#ff0000;
+    transform:scale(1.02);
 }
 
-.menu {
-background: #ffe0e0;
-padding: 10px;
+/* ===== NAVBAR ===== */
+
+.navbar{
+    position:relative;
+    background:linear-gradient(90deg,#c40000,#ff2d2d);
+    color:white;
+    padding:15px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
 }
 
-.menu button {
-width: 100%;
-margin: 5px 0;
+/* TITULO CENTRADO */
+
+.titulo-navbar{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:1px;
 }
 
-.oculto {
-display: none;
+/* LOGO DERECHA */
+
+.logo-navbar{
+    position:absolute;
+    right:20px;
+
+    width:50px;
+    height:50px;
+    min-width:50px;
+
+    border-radius:50%;
+    background:white;
+    border:3px solid gold;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
 }
 
-.contenido {
-display: flex;
-justify-content: center;
-margin-top: 20px;
+.logo-navbar img{
+    width:70%;
+    height:70%;
+    object-fit:contain;
+}
+/* LOGO NAVBAR */
+.logo-navbar{
+    width:45px;
+    height:45px;
+    min-width:45px;
+    border-radius:50%;
+    background:white;
+    border:3px solid gold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
 }
 
-.card {
-background: white;
-padding: 20px;
-border-radius: 15px;
-width: 90%;
-max-width: 500px;
-}
-/* BOTONES GENERALES */
-button {
-    border-radius: 10px;
-    padding: 10px;
-    margin-top: 10px;
-    cursor: pointer;
+.logo-navbar img{
+    width:70%;
+    height:70%;
+    object-fit:contain;
 }
 
-/* SEPARACIÓN */
-.form button,
-.acciones {
-    margin-top: 15px;
+/* BOTON MENU */
+.btn-menu-mini{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    font-size:22px;
+    cursor:pointer;
+    color:#d10000;
+    font-weight:bold;
 }
 
-/* BOTÓN VOLVER */
-.btn-volver {
-    margin: 10px;
-    background: gray;
-    color: white;
-    border: none;
+/* =========================
+MENU
+========================= */
+
+.menu{
+    position:fixed;
+    right:15px;
+    top:70px;
+    width:230px;
+    background:white;
+    border-radius:15px;
+    padding:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    z-index:999;
 }
 
-/* TABLA VENTA */
-.tabla-venta {
-width: 100%;
-border-collapse: collapse;
-margin-bottom: 10px;
+.menu button{
+    width:100%;
+    border:none;
+    padding:14px;
+    margin:5px 0;
+    border-radius:10px;
+    font-size:15px;
+    cursor:pointer;
+    background:#f3f3f3;
+    transition:.3s;
+    text-align:left;
 }
 
-.tabla-venta th, .tabla-venta td {
-border-bottom: 1px solid #ccc;
-padding: 8px;
-text-align: center;
+.menu button:hover{
+    background:#e10000;
+    color:white;
 }
 
-/* TOTAL */
-#totalVenta {
-text-align: right;
-color: red;
+.btn-logout{
+    background:#111 !important;
+    color:white;
 }
 
-/* INPUTS */
-.agregar-producto {
-display: flex;
-gap: 10px;
-margin-top: 10px;
+/* =========================
+CONTENIDO
+========================= */
+
+.contenido{
+    padding:25px;
 }
 
-.agregar-producto input {
-flex: 1;
-padding: 10px;
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
-/* BOTON FINAL */
-.btn-finalizar {
-margin-top: 10px;
-width: 100%;
-background: green;
-color: white;
-padding: 12px;
-border-radius: 10px;
+.oculto{
+    display:none;
 }
 
-/* LOGO EN NAVBAR (BONITO) */
-.logo-navbar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 3px solid gold;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* =========================
+TITULOS
+========================= */
+
+.titulo-seccion{
+    font-size:28px;
+    margin-bottom:20px;
+    color:#222;
 }
 
-.logo-navbar img {
-    width: 24px;
+/* =========================
+TABLAS
+========================= */
+
+.tabla-venta{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
 }
 
-/* AJUSTE BOTON MENU */
-.btn-menu-mini {
-    margin-left: 5px;
+.tabla-venta th{
+    background:#111;
+    color:white;
+    padding:14px;
 }
 
-/* MENU COMO VENTANA EMERGENTE */
-.menu {
+.tabla-venta td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+/* =========================
+INPUTS
+========================= */
+
+input,
+select{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:15px;
+    box-sizing:border-box;
+}
+
+/* =========================
+BOTONES
+========================= */
+
+button{
+    border:none;
+    cursor:pointer;
+}
+
+.btn-principal{
+    background:#e00000;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    font-size:15px;
+    transition:.3s;
+}
+
+.btn-principal:hover{
+    transform:scale(1.03);
+}
+
+.btn-finalizar{
+    width:100%;
+    margin-top:20px;
+    background:#00a63e;
+    color:white;
+    padding:18px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* =========================
+VENTAS
+========================= */
+
+.acciones-venta{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.acciones-venta button{
+    flex:1;
+}
+
+#totalVenta{
+    text-align:right;
+    color:#d10000;
+    font-size:28px;
+    margin-top:20px;
+}
+
+/* =========================
+MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:9999;
+}
+
+.modal-contenido{
+    background:white;
+    width:90%;
+    max-width:700px;
+    margin:40px auto;
+    border-radius:20px;
+    padding:25px;
+}
+
+/* =========================
+HISTORIAL
+========================= */
+
+.venta-historial{
+    background:#fafafa;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+    border:1px solid #ddd;
+}
+
+.venta-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* =========================
+IA
+========================= */
+
+#robot{
+    font-size:70px;
+    text-align:center;
+    animation:flotar 2s infinite;
+}
+
+@keyframes flotar{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0);}
+}
+
+.mensaje{
+    padding:12px;
+    border-radius:12px;
+    margin-top:10px;
+}
+
+.usuario{
+    background:#dbeaff;
+}
+
+.ia{
+    background:#d9ffe1;
+}
+
+/* =========================
+PRODUCTOS
+========================= */
+
+.producto-encontrado{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    margin-top:10px;
+}
+
+.producto-encontrado button{
+    background:#009c3b;
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+}
+
+/* =========================
+BOTONES EXTRA
+========================= */
+
+.btn-eliminar{
+    background:#e00000;
+    color:white;
+    border-radius:8px;
+    padding:8px;
+}
+
+.btn-editar{
+    background:#ffb300;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-right:5px;
+}
+
+.btn-borrar{
+    background:#e10000;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* =========================
+INVENTARIO
+========================= */
+
+.inventario-card{
+    width:95%;
+    max-width:1300px;
+    padding:30px;
+}
+
+.header-inventario{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.header-inventario h1{
+    margin:0;
+    font-size:32px;
+    color:#d10000;
+}
+
+.header-inventario p{
+    margin-top:5px;
+    color:gray;
+}
+
+/* FORM */
+
+.form-producto{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.form-producto input{
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #ccc;
+    font-size:15px;
+}
+
+/* TABLAS */
+
+.tabla-contenedor{
+    overflow-x:auto;
+}
+
+.tabla-pro{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+.tabla-pro thead{
+    background:#d10000;
+    color:white;
+}
+
+.tabla-pro th{
+    padding:16px;
+    text-align:center;
+}
+
+.tabla-pro td{
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+.tabla-pro tr:hover{
+    background:#fff5f5;
+}
+
+/* =========================
+SCANNER
+========================= */
+
+#cantidadVenta{
+    width:120px;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+.producto-detectado{
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.producto-detectado h3{
+    margin-bottom:10px;
+}
+
+.producto-detectado input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+
+.producto-detectado button{
+    width:100%;
+    margin-top:15px;
+    background:green;
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:12px;
+    font-size:16px;
+}
+
+.scanner-box{
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    animation:aparecer .3s ease;
+}
+
+.scanner-box h3{
+    color:red;
+    margin-bottom:15px;
+}
+
+.scanner-box input{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border-radius:12px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+.scanner-box button{
+    width:100%;
+    margin-top:15px;
+    background:green;
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+    background:linear-gradient(90deg,#c40000,#ff2d2d);
+    color:white;
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+/* LOGO */
+
+.logo-navbar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:white;
+    border:3px solid gold;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     position: absolute;
-    top: 60px;
-    right: 10px; /* aparece a la derecha */
-    width: 200px;
-    background: white;
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    z-index: 1000;
+    left:20px;
+    top: 30px;
 }
 
-/* BOTONES DENTRO DEL MENU */
-.menu button {
-    width: 100%;
-    margin: 5px 0;
-    padding: 10px;
-    border: none;
-    background: #f5f5f5;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: left;
+
+/* TITULO CENTRADO */
+
+.titulo-centro{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    margin:0;
+    font-size:28px;
+    font-weight:bold;
 }
 
-/* HOVER BONITO */
-.menu button:hover {
-    background: #d64949;
+/* BOTON MENU DERECHA */
+
+.btn-menu-mini{
+    margin-left:auto;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#d10000;
+    font-size:24px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.btn-logout {
-    background: #ec0f0f;
-    color: rgb(207, 114, 114);
-    font-weight: bold;
+/* MENU FLOTANTE */
+
+.menu{
+    position:fixed;
+    top:80px;
+    right:20px;
+    width:230px;
+    background:white;
+    border-radius:15px;
+    padding:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    z-index:9999;
 }
 
-.btn-logout:hover {
-    background: #cc0000;
+.menu button{
+    width:100%;
+    border:none;
+    padding:14px;
+    margin-top:8px;
+    border-radius:10px;
+    background:#f4f4f4;
+    font-size:15px;
+    cursor:pointer;
+    transition:.3s;
+    text-align:left;
+}
+
+.menu button:hover{
+    background:#d10000;
+    color:white;
+}
+
+/* ===================== */
+/* BAR */
+/* ===================== */
+
+.tema-bar{
+background:#111;
+color:white;
+}
+
+.tema-bar .navbar{
+background:#000;
+}
+
+.tema-bar button{
+background:#7c00ff;
+}
+
+/* ===================== */
+/* DROGUERIA */
+/* ===================== */
+
+.tema-drogueria{
+background:#f4fbff;
+}
+
+.tema-drogueria .navbar{
+background:#2196f3;
+}
+
+.tema-drogueria button{
+background:#00bcd4;
+}
+
+/* ===================== */
+/* SUPERMERCADO */
+/* ===================== */
+
+.tema-super{
+background:#fff8e1;
+}
+
+.tema-super .navbar{
+background:#f44336;
+}
+
+.tema-super button{
+background:#ff9800;
 }

@@ -1,48 +1,322 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Inventario</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body onload="verificarSesion()">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Inventario SmartStock</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* CONTENEDOR */
+.inventario-container{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    padding:20px;
+}
+
+/* FORMULARIO */
+.formulario-producto{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin-top:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* TITULOS */
+.titulo-form{
+    font-size:28px;
+    margin-bottom:10px;
+    color:#111;
+}
+
+.subtitulo{
+    color:gray;
+    margin-bottom:20px;
+}
+
+/* GRID */
+.grid-form{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+/* INPUTS */
+.grid-form input{
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+}
+
+.grid-form input:focus{
+    border-color:red;
+    box-shadow:0 0 8px rgba(255,0,0,0.2);
+}
+
+/* BOTON */
+.btn-guardar{
+    margin-top:20px;
+    width:100%;
+    background:red;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn-guardar:hover{
+    background:#cc0000;
+}
+
+/* TABLA */
+.tabla-container{
+    margin-top:30px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* TITULO INVENTARIO */
+.titulo-inventario{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+/* TABLA */
+.tabla-inventario{
+    width:100%;
+    border-collapse:collapse;
+}
+
+/* HEAD */
+.tabla-inventario thead{
+    background:red;
+    color:white;
+}
+
+/* CELDAS */
+.tabla-inventario th,
+.tabla-inventario td{
+    padding:14px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+/* HOVER */
+.tabla-inventario tbody tr:hover{
+    background:#f5f5f5;
+}
+
+/* BOTONES */
+.btn-editar{
+    background:#ffc107;
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn-eliminar{
+    background:#dc3545;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn-editar:hover{
+    opacity:0.9;
+}
+
+.btn-eliminar:hover{
+    opacity:0.9;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
 <header class="navbar">
-<h2 id="nombreTienda"></h2>
-<button onclick="cerrarSesion()">Cerrar sesión</button>
+
+    <h2 id="nombreTienda">
+        SmartStock
+    </h2>
+
+    <button id="btnMenu" onclick="toggleMenu()">
+        ☰
+    </button>
+
 </header>
 
-<main class="contenido">
+<!-- MENU -->
+<div id="menuFlotante">
 
-<h2>Inventario 📦</h2>
+    <button onclick="window.location.href='dashboard.html'">
+        🏠 Principal
+    </button>
 
-<button onclick="mostrarFormulario()">➕ Agregar producto</button>
+    <button onclick="window.location.href='inventario.html'">
+        📦 Inventario
+    </button>
 
-<div id="formProducto" class="form oculto">
+    <button onclick="window.location.href='historial.html'">
+        📑 Historial
+    </button>
+
+    <button onclick="window.location.href='ia.html'">
+        🤖 Smart IA
+    </button>
+
+    <button onclick="window.location.href='perfil.html'">
+        👤 Perfil
+    </button>
+
+    <button onclick="cerrarSesion()">
+        🚪 Cerrar sesión
+    </button>
+
+</div>
+<!-- CONTENIDO -->
+<main class="inventario-container">
+
+<!-- FORMULARIO -->
+<section class="formulario-producto">
+
+<h1 class="titulo-form">
+📦 Agregar producto
+</h1>
+
+<p class="subtitulo">
+Registra productos inteligentes para tu inventario
+</p>
+
+<div class="grid-form">
+
 <input type="text" id="idProd" placeholder="ID">
-<input type="text" id="codigo" placeholder="Código">
-<input type="text" id="nombre" placeholder="Nombre">
-<input type="number" id="costo" placeholder="Costo">
-<input type="number" id="valor" placeholder="Precio">
-<button onclick="agregarProducto()">Guardar</button>
+
+<input type="text" id="codigo" placeholder="Código de barras">
+
+<input type="text" id="nombre" placeholder="Nombre del producto">
+
+<input type="text" id="costo" placeholder="Costo del producto">
+
+<input type="text" id="valor" placeholder="Precio de venta">
+
+<input type="number" id="cantidad" placeholder="Cantidad">
+
 </div>
 
-<table>
+<button class="btn-guardar" onclick="agregarProducto()">
+Guardar producto
+</button>
+
+</section>
+
+<!-- INVENTARIO -->
+<section class="tabla-container">
+
+<h1 class="titulo-inventario">
+🏪 Inventario de la tienda
+</h1>
+
+<table class="tabla-inventario">
+
 <thead>
+
 <tr>
+
 <th>ID</th>
+
 <th>Código</th>
+
 <th>Nombre</th>
+
+<th>Costo</th>
+
 <th>Precio</th>
+
 <th>Stock</th>
+
+<th>Acciones</th>
+
 </tr>
+
 </thead>
-<tbody id="tablaProductos"></tbody>
+
+<tbody id="tablaProductos">
+
+</tbody>
+
 </table>
+
+</section>
 
 </main>
 
 <script src="js/global.js"></script>
+
 <script src="js/inventario.js"></script>
+
 </body>
+<header class="navbar">
+
+    <h2 id="nombreTienda">
+        SmartStock
+    </h2>
+
+    <button class="btn-menu" onclick="toggleMenu()">
+        ☰
+    </button>
+
+</header>
+
+<!-- MENU FLOTANTE -->
+<div id="menu" class="menu oculto">
+
+    <button onclick="window.location.href='dashboard.html'">
+        🏠 Principal
+    </button>
+
+    <button onclick="window.location.href='inventario.html'">
+        📦 Inventario
+    </button>
+
+    <button onclick="window.location.href='historial.html'">
+        📑 Historial
+    </button>
+
+    <button onclick="window.location.href='ia.html'">
+        🤖 Smart IA
+    </button>
+
+    <button onclick="window.location.href='perfil.html'">
+        👤 Perfil
+    </button>
+
+    <button onclick="cerrarSesion()" class="btn-logout">
+        🚪 Cerrar sesión
+    </button>
+
+</div>
 </html>
